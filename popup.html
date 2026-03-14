@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Craigslist Power Search</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 240px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      color: #333;
+      padding: 14px;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #222;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .stat-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .stat-label { color: #777; }
+    .stat-value { font-weight: 600; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 12px 0;
+    }
+
+    #clear-btn {
+      width: 100%;
+      padding: 7px;
+      background: #eee;
+      color: #555;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    #clear-btn:hover { background: #e0e0e0; }
+
+    #confirm-row {
+      display: none;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #c22;
+    }
+
+    #confirm-row.visible { display: flex; gap: 6px; align-items: center; }
+
+    #confirm-yes {
+      padding: 4px 10px;
+      background: #c22;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    #confirm-no {
+      padding: 4px 10px;
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    #no-data {
+      color: #999;
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    #export-import-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    #export-btn, #import-label {
+      flex: 1;
+      padding: 7px;
+      background: #eee;
+      color: #555;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    #export-btn:hover, #import-label:hover { background: #e0e0e0; }
+
+    #import-input { display: none; }
+
+    #import-status {
+      margin-top: 6px;
+      font-size: 11px;
+      color: #4a4;
+      min-height: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h2>CL Power Search</h2>
+
+  <div id="stats">
+    <div id="no-data">No listings dismissed yet.</div>
+    <div class="stat-row" id="row-count" style="display:none">
+      <span class="stat-label">Listings hidden</span>
+      <span class="stat-value" id="dismissed-count">0</span>
+    </div>
+    <div class="stat-row" id="row-since" style="display:none">
+      <span class="stat-label">Tracking since</span>
+      <span class="stat-value" id="since-date">—</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <button id="clear-btn">Clear all dismissed listings</button>
+
+  <div id="confirm-row">
+    Are you sure?
+    <button id="confirm-yes">Yes, clear</button>
+    <button id="confirm-no">Cancel</button>
+  </div>
+
+  <div id="export-import-row">
+    <button id="export-btn">Export</button>
+    <label id="import-label">
+      Import
+      <input type="file" id="import-input" accept=".json" />
+    </label>
+  </div>
+  <div id="import-status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

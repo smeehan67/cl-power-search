@@ -1,0 +1,403 @@
+/* ============================================================
+   DISMISS BUTTON
+   ============================================================ */
+
+.cl-dismiss-btn {
+  /* Position/layout set via inline styles per view mode (gallery vs list/thumb) */
+  background: rgba(120, 120, 120, 0.7);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s;
+  font-family: sans-serif;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.cl-dismiss-btn:hover {
+  background: rgba(200, 40, 40, 0.9);
+}
+
+/* Prevent CL's anchor overlay (::before/::after) from stealing clicks
+   from the dismiss button in list/thumb views */
+.cl-search-result a.cl-app-anchor::before,
+.cl-search-result a.cl-app-anchor::after {
+  pointer-events: none !important;
+}
+
+/* Ensure the card is the positioning context; isolate creates a stacking context
+   so the button's z-index is evaluated against CL's internal elements in isolation */
+.cl-search-result,
+ol.cl-static-search-results li {
+  position: relative !important;
+  overflow: visible !important;
+  isolation: isolate;
+}
+
+/* Fade-out animation before removal */
+.cl-fading-out {
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+  opacity: 0 !important;
+  transform: scaleY(0.8) !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
+   DISMISS COUNT BADGE
+   ============================================================ */
+
+#cl-dismiss-badge {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #666;
+  font-size: 12px;
+  font-family: sans-serif;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+#cl-dismiss-badge span {
+  font-weight: bold;
+  color: #444;
+}
+
+/* ============================================================
+   DETAIL PAGE DISMISS BUTTON
+   ============================================================ */
+
+#cl-detail-dismiss-btn {
+  display: inline-block;
+  margin: 8px 0 12px;
+  padding: 5px 12px;
+  background: rgba(120, 120, 120, 0.15);
+  color: #555;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+#cl-detail-dismiss-btn:hover:not(:disabled) {
+  background: rgba(200, 40, 40, 0.1);
+  color: #c44;
+  border-color: #c44;
+}
+
+#cl-detail-dismiss-btn.cl-detail-dismissed,
+#cl-detail-dismiss-btn:disabled {
+  color: #888;
+  border-color: #ddd;
+  background: none;
+  cursor: default;
+}
+
+/* ============================================================
+   BOOLEAN BUILDER PANEL
+   ============================================================ */
+
+#cl-builder-panel {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  width: 300px;
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #333;
+}
+
+#cl-builder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+#cl-builder-header h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#cl-builder-toggle {
+  font-size: 11px;
+  color: #888;
+}
+
+#cl-builder-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 10px 12px;
+}
+
+#cl-builder-body.collapsed {
+  display: none;
+}
+
+/* Scrollable terms area — OR + NOT rows; preview/buttons stay pinned below */
+#cl-terms-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.cl-builder-section-label {
+  font-weight: 600;
+  margin: 8px 0 4px;
+  font-size: 12px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cl-term-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.cl-term-row input[type="text"] {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.cl-term-row input[type="text"]:focus {
+  outline: none;
+  border-color: #7b4;
+}
+
+.cl-phrase-toggle {
+  font-size: 11px;
+  color: #888;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.cl-phrase-toggle.active {
+  color: #46a;
+  border-color: #acd;
+  background: #eef;
+}
+
+.cl-phrase-toggle.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cl-phrase-toggle.cl-phrase-wildcard-warn {
+  color: #c44;
+  border-color: #c44;
+  font-size: 10px;
+}
+
+.cl-remove-btn {
+  background: none;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.cl-remove-btn:hover {
+  color: #c44;
+}
+
+.cl-add-btn {
+  font-size: 11px;
+  color: #46a;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 2px;
+  text-decoration: underline;
+}
+
+.cl-add-btn:hover {
+  color: #24c;
+}
+
+/* Query preview */
+#cl-query-preview {
+  margin-top: 10px;
+  padding: 6px 8px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 11px;
+  word-break: break-all;
+  min-height: 28px;
+  color: #333;
+}
+
+/* Plain-English query summary */
+#cl-plain-english {
+  margin-top: 6px;
+  padding: 5px 8px;
+  background: #f4f8f4;
+  border: 1px solid #cde0cd;
+  border-radius: 3px;
+  font-size: 11.5px;
+  color: #555;
+  line-height: 1.55;
+}
+
+#cl-plain-english b {
+  color: #2a5a2a;
+  font-weight: 600;
+}
+
+#cl-plain-english.hidden {
+  display: none;
+}
+
+/* Character counter */
+#cl-char-counter {
+  margin-top: 4px;
+  font-size: 11px;
+  text-align: right;
+}
+
+#cl-char-counter.green { color: #4a4; }
+#cl-char-counter.yellow { color: #a80; }
+#cl-char-counter.red { color: #c22; font-weight: bold; }
+
+#cl-char-warning {
+  color: #c22;
+  font-size: 11px;
+  margin-top: 2px;
+  display: none;
+}
+
+#cl-char-warning.visible { display: block; }
+
+/* Search button */
+#cl-search-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 7px;
+  background: #7b4;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#cl-search-btn:hover:not(:disabled) {
+  background: #6a3;
+}
+
+#cl-search-btn:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+}
+
+/* Template selector */
+#cl-template-select {
+  width: 100%;
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #555;
+  background: #fff;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+#cl-template-select:focus {
+  outline: none;
+  border-color: #7b4;
+}
+
+/* Save row */
+#cl-save-row {
+  margin-top: 8px;
+}
+
+/* Delete saved search button */
+#cl-delete-btn:hover {
+  color: #c44;
+}
+
+/* CSV export/import row */
+#cl-csv-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+#cl-import-csv-label {
+  font-size: 11px;
+  color: #46a;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#cl-import-csv-label:hover { color: #24c; }
+
+#cl-import-csv-input { display: none; }
+
+#cl-csv-status {
+  font-size: 11px;
+  color: #4a4;
+  flex: 1;
+  text-align: right;
+}
+
+/* Clear button */
+#cl-clear-btn {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 5px;
+  background: none;
+  color: #999;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#cl-clear-btn:hover {
+  color: #c44;
+  border-color: #c44;
+}
