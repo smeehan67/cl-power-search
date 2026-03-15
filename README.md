@@ -1,6 +1,6 @@
 # CL Power Search
 
-A Chrome extension for persistent Craigslist searchers. Dismiss listings so they stay hidden (even when sellers repost), build complex Boolean searches visually, and auto-split queries that would silently fail.
+A browser extension for Chrome, Edge, Brave, and other Chromium-based browsers for persistent Craigslist searchers. Dismiss listings so they stay hidden (even when sellers repost), build complex Boolean searches visually, and auto-split queries that would silently fail.
 
 > **Beta** -- not yet on the Chrome Web Store. Install via developer mode (takes about 30 seconds).
 
@@ -40,7 +40,7 @@ Save your search configurations and export/import them as CSV files.
 ## Install
 
 1. Download this repo (click the green **Code** button above, then **Download ZIP**) and unzip it
-2. Open Chrome and go to `chrome://extensions`
+2. Open your browser (Chrome, Edge, Brave, Opera, etc.) and go to `chrome://extensions`
 3. Enable **Developer mode** (toggle in the top-right corner)
 4. Click **Load unpacked**
 5. Select the unzipped folder (the one containing `manifest.json`)
@@ -49,7 +49,7 @@ The CL Power Search icon will appear in your toolbar. Navigate to any Craigslist
 
 ## How It Works
 
-- All data stays in your browser (Chrome's local storage). Nothing is sent anywhere.
+- All data stays in your browser's local storage. Nothing is sent anywhere.
 - No background scripts, no network requests, no analytics.
 - Listing fingerprints are SHA-256 hashes of `title|price|neighborhood`, stored locally.
 - The extension only runs on `*.craigslist.org` pages.
