@@ -4,6 +4,10 @@ A browser extension for Chrome, Edge, Brave, and other Chromium-based browsers f
 
 > **Beta** -- not yet on the Chrome Web Store. Install via developer mode (takes about 30 seconds).
 
+## Demo
+
+Watch a 3-minute walkthrough: [CL Power Search demo](https://share.descript.com/view/ZKjjvZrrskN)
+
 ## Features
 
 ### Dismiss Button
@@ -22,6 +26,8 @@ A floating panel that lets you build complex searches visually:
 - **Phrase toggle** -- mark individual terms as exact phrases
 
 Craigslist natively supports Boolean syntax (`(term1|term2) -exclude "exact phrase"`), but there's no UI for it. The builder generates the correct syntax for you.
+
+![Boolean Query Builder panel](boolean-builder.png)
 
 ### Auto-Split
 
