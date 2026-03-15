@@ -6,7 +6,7 @@ A browser extension for Chrome, Edge, Brave, and other Chromium-based browsers f
 
 ## Demo
 
-Watch a 3-minute walkthrough: [CL Power Search demo](https://share.descript.com/view/ZKjjvZrrskN)
+Watch a 3-minute video walkthrough: [CL Power Search demo](https://share.descript.com/view/ZKjjvZrrskN)
 
 ## Features
 
